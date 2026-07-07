@@ -1,0 +1,8 @@
+Study area: 4.28 km^2
+OSM buildings: 94
+AI buildings: 684
+Confirmed matches (IoU>=0.1): 53
+Recall: 56.4%
+Mean IoU: 0.458 (median 0.425, SD 0.187)
+Mean centroid offset: 6.03 m
+AI-only detections: 628 (91.8%)
