@@ -2,7 +2,7 @@
 
 **An instance-level empirical reliability audit of AI-generated building footprints in a data-scarce urban environment.**
 
-This repository accompanies the technical report *"Quantifying the Reliability Gap: A Spatial Accuracy Assessment of AI-Generated Building Footprints in a Data-Scarce Urban Environment (Abuja, Nigeria)"* (G. G. Mungan, 2026) — prepared as a technical work sample for an AI safety fellowship application. Full report: [`report/Abuja_GeoAI_Reliability_Report.pdf`](report/Abuja_GeoAI_Reliability_Report.pdf).
+This repository accompanies the technical report *"Quantifying the Reliability Gap: A Spatial Accuracy Assessment of AI-Generated Building Footprints in a Data-Scarce Urban Environment (Abuja, Nigeria)"* (G. G. Mungan, 2026) — prepared as a technical work sample for an AI safety fellowship application. Full report: [`Abuja_GeoAI_Reliability_Report_FINAL.pdf`](Abuja_GeoAI_Reliability_Report_FINAL.pdf).
 
 ## The question
 
@@ -24,23 +24,26 @@ AI systems increasingly generate building-footprint data where OpenStreetMap cov
 
 ## Repository structure
 
+This repository uses a flat layout — all files sit in the root:
+
 ```
-analysis/matching_analysis.py   # full pipeline: load → clip → greedy IoU matching → metrics → sensitivity → figures
-data/                           # study-area boundary + OSM reference layer (see licensing below)
-results/                        # metrics_summary.txt, matched_pairs.csv, sensitivity.csv
-figures/                        # recall_bar.png, iou_histogram.png, sensitivity_curve.png
-report/                         # full technical report (PDF)
+matching_analysis.py                      # full pipeline: load → clip → greedy IoU matching → metrics → sensitivity → figures
+Study_Area.* / Into_Study_Area_OSM.*      # study-area boundary + OSM reference layer (see licensing below)
+metrics_summary.txt, matched_pairs.csv,
+sensitivity.csv                           # derived results
+recall_bar.png, iou_histogram.png,
+sensitivity_curve.png                     # figures
+Abuja_GeoAI_Reliability_Report_FINAL.pdf  # full technical report
 ```
 
 ## Reproduce
 
 ```bash
 pip install geopandas shapely numpy matplotlib
-cd analysis
 python matching_analysis.py
 ```
 
-The script prints all headline metrics and regenerates `results/` and `figures/` from the shapefiles in `data/`.
+The script prints all headline metrics and regenerates the results CSVs and figures from the shapefiles in the repository root. Note: the raw AI layer is not redistributed (see licensing below), so out of the box the script reproduces the OSM-side loading; to rerun the full matching, regenerate the AI layer via Mapflow and place `AI_Study_Area.*` next to the script.
 
 ### Methodology in one paragraph
 
@@ -48,9 +51,9 @@ Every OSM building polygon is matched against AI-generated polygons using a **gr
 
 ## Data & licensing
 
-- **OSM reference layer** (`data/Into_Study_Area_OSM.*`): © OpenStreetMap contributors, extracted via QuickOSM/Overpass API (`building=*`), redistributed under the [Open Database License (ODbL)](https://www.openstreetmap.org/copyright).
-- **Study-area boundary** (`data/Study_Area.*`): author's own work.
-- **AI-generated layer**: produced with [Mapflow.ai](https://mapflow.ai) ("Buildings" model, Mapbox Satellite imagery, processing date 29 Apr 2026). Raw AI polygons are **not redistributed** here pending clarity on the provider's redistribution terms; **derived per-pair metrics** (`results/matched_pairs.csv`: IoU and centroid offset per matched pair) are included, and the layer is reproducible via Mapflow with the documented parameters.
+- **OSM reference layer** (`Into_Study_Area_OSM.*`): © OpenStreetMap contributors, extracted via QuickOSM/Overpass API (`building=*`), redistributed under the [Open Database License (ODbL)](https://www.openstreetmap.org/copyright).
+- **Study-area boundary** (`Study_Area.*`): author's own work.
+- **AI-generated layer**: produced with [Mapflow.ai](https://mapflow.ai) ("Buildings" model, Mapbox Satellite imagery, processing date 29 Apr 2026). Raw AI polygons are **not redistributed** here pending clarity on the provider's redistribution terms; **derived per-pair metrics** (`matched_pairs.csv`: IoU and centroid offset per matched pair) are included, and the layer is reproducible via Mapflow with the documented parameters.
 
 ## Limitations (summary — see report §7 for full discussion)
 
@@ -67,4 +70,4 @@ The analysis pipeline in this repository was developed with AI-assisted coding. 
 
 ## License
 
-Code: MIT (see `LICENSE`). Data: per-source licenses above. Report PDF: © the author, shared for evaluation purposes.
+Code: MIT (see `LICENSE`). Data: per-source licenses above. Report PDF: © 2026 Gamze Gül Mungan. All rights reserved; shared for evaluation purposes.
