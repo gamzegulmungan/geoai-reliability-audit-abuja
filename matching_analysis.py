@@ -32,9 +32,10 @@ from shapely.strtree import STRtree
 
 os.environ.setdefault("SHAPE_RESTORE_SHX", "YES")
 
-DATA = os.path.join(os.path.dirname(__file__), "..", "data")
-OUT = os.path.join(os.path.dirname(__file__), "..", "results")
-FIG = os.path.join(os.path.dirname(__file__), "..", "figures")
+BASE = os.path.dirname(os.path.abspath(__file__))
+DATA = BASE   # flat repo layout: shapefiles sit next to this script
+OUT = BASE    # results CSVs are written next to this script
+FIG = BASE    # figures are written next to this script
 os.makedirs(OUT, exist_ok=True)
 os.makedirs(FIG, exist_ok=True)
 
@@ -164,4 +165,4 @@ ax.grid(axis="y", alpha=0.3)
 ax.set_title("Sensitivity of recall to matching threshold")
 plt.tight_layout(); plt.savefig(os.path.join(FIG, "sensitivity_curve.png")); plt.close()
 
-print("\nOutputs written to results/ and figures/.")
+print("\nOutputs written next to the script.")
