@@ -2,7 +2,7 @@
 
 **An instance-level empirical reliability audit of AI-generated building footprints in a data-scarce urban environment.**
 
-This repository accompanies the technical report *"Quantifying the Reliability Gap: A Spatial Accuracy Assessment of AI-Generated Building Footprints in a Data-Scarce Urban Environment (Abuja, Nigeria)"* (G. G. Mungan, 2026) — prepared as a technical work sample for an AI safety fellowship application. Full report: [`Abuja_GeoAI_Reliability_Report_FINAL.pdf`](Abuja_GeoAI_Reliability_Report_FINAL.pdf).
+This repository accompanies the technical report *"Quantifying the Reliability Gap: A Spatial Accuracy Assessment of AI-Generated Building Footprints in a Data-Scarce Urban Environment (Abuja, Nigeria)"* (G. G. Mungan, 2026) — prepared as an independent technical study. Full report: [`Abuja_GeoAI_Reliability_Report_FINAL.pdf`](Abuja_GeoAI_Reliability_Report_FINAL.pdf).
 
 ## The question
 
